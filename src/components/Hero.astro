@@ -1,0 +1,62 @@
+---
+import { Code } from 'astro:components';
+---
+<section class="bg-gradient-to-b from-white to-gray-50">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-16">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight">
+          A script-friendly alternative to PGTune
+        </h1>
+        <p class="mt-4 text-gray-600">
+          Get sensible PostgreSQL configuration recommendations from a simple <span class="font-semibold">GET</span> request.
+          Built for CI, provisioning, and one-liners—no UI required.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#quickstart" class="inline-flex items-center gap-2 rounded-lg bg-brand px-4 py-2 text-white hover:bg-brand-dark">
+            Quickstart
+          </a>
+          <a href="#endpoint" class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 hover:bg-gray-50">
+            Read the docs
+          </a>
+        </div>
+        <p class="mt-4 text-xs text-gray-500">
+          Tip: use with <span class="kbd">curl</span>, <span class="kbd">wget</span>, or your config management of choice.
+        </p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+        <div class="text-xs text-gray-500 mb-2">Sample response</div>
+          <Code class="overflow-x-auto text-sm" code={`{
+  "shared_buffers": "8GB",
+  "effective_cache_size": "24GB",
+  "work_mem": "64MB",
+  "maintenance_work_mem": "2GB",
+  "wal_buffers": "auto",
+  "checkpoint_completion_target": 0.9,
+  "default_statistics_target": 100,
+  "random_page_cost": 1.1,
+  "effective_io_concurrency": 200,
+  "max_connections": 200,
+  "max_worker_processes": 8,
+  "max_parallel_workers": 8,
+  "max_parallel_workers_per_gather": 4,
+  "notes": ["generated: v1", "profile: oltp"]
+}`} lang="json" />
+      </div>
+    </div>
+    <div class="mt-10 grid sm:grid-cols-3 gap-4">
+      <div class="rounded-lg border border-gray-200 bg-white p-4">
+        <div class="font-semibold">Deterministic</div>
+        <p class="text-sm text-gray-600 mt-1">Same inputs → same outputs. Easy to diff and commit.</p>
+      </div>
+      <div class="rounded-lg border border-gray-200 bg-white p-4">
+        <div class="font-semibold">Zero deps</div>
+        <p class="text-sm text-gray-600 mt-1">Just call the endpoint. Great for cloud-init/Ansible/Terraform.</p>
+      </div>
+      <div class="rounded-lg border border-gray-200 bg-white p-4">
+        <div class="font-semibold">Human-vetted defaults</div>
+        <p class="text-sm text-gray-600 mt-1">Sane recs that won’t shock your cluster.</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,108 @@
+<section id="quickstart" class="mx-auto max-w-6xl px-4 sm:px-6 py-14">
+  <h2 class="text-2xl font-bold">Quickstart</h2>
+  <p class="mt-2 text-gray-600">Fill in your server profile and copy the URL or curl command. The page won’t make network calls—no CORS headaches.</p>
+
+  <div class="mt-6 grid lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-1 rounded-xl border border-gray-200 bg-white p-4">
+      <label class="block text-sm font-medium text-gray-700">API Base URL</label>
+      <input id="baseUrl" type="text" class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+              placeholder="https://api.example.com" value="https://api.example.com">
+
+      <div class="mt-4 grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">memory_gb</label>
+          <input id="memory" type="number" min="1" class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand" placeholder="e.g., 32" value="32">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">cpus</label>
+          <input id="cpus" type="number" min="1" class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand" placeholder="e.g., 8" value="8">
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <label class="block text-sm font-medium text-gray-700">storage_type</label>
+        <select id="storage" class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand">
+          <option value="ssd" selected>ssd</option>
+          <option value="hdd">hdd</option>
+          <option value="nvme">nvme</option>
+        </select>
+      </div>
+
+      <div class="mt-3">
+        <label class="block text-sm font-medium text-gray-700">workload</label>
+        <select id="workload" class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand">
+          <option value="oltp" selected>oltp</option>
+          <option value="olap">olap</option>
+          <option value="mixed">mixed</option>
+        </select>
+      </div>
+
+      <div class="mt-3">
+        <label class="block text-sm font-medium text-gray-700">max_conn (optional)</label>
+        <input id="maxconn" type="number" min="1" class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand" placeholder="e.g., 200">
+      </div>
+
+      <button id="buildBtn" class="mt-5 w-full rounded-lg bg-brand px-4 py-2 text-white hover:bg-brand-dark">Build Request</button>
+    </div>
+
+    <div class="lg:col-span-2 space-y-6">
+      <div class="rounded-xl border border-gray-200 bg-white p-4">
+        <div class="flex items-center justify-between">
+          <div class="text-sm font-semibold text-gray-700">GET URL</div>
+          <button data-copy="#urlOut" class="copy-btn text-xs rounded border border-gray-300 px-2 py-1 hover:bg-gray-50">Copy</button>
+        </div>
+        <pre class="mt-2 overflow-x-auto text-sm"><code id="urlOut">https://api.example.com/v1/tune?memory_gb=32&cpus=8&storage_type=ssd&workload=oltp</code></pre>
+      </div>
+      <div class="rounded-xl border border-gray-200 bg-white p-4">
+        <div class="flex items-center justify-between">
+          <div class="text-sm font-semibold text-gray-700">curl</div>
+          <button data-copy="#curlOut" class="copy-btn text-xs rounded border border-gray-300 px-2 py-1 hover:bg-gray-50">Copy</button>
+        </div>
+        <pre class="mt-2 overflow-x-auto text-sm"><code id="curlOut">curl -sS "https://api.example.com/v1/tune?memory_gb=32&cpus=8&storage_type=ssd&workload=oltp"</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Build URL & curl
+  const q = (id) => document.getElementById(id);
+  function build() {
+    const base = q('baseUrl').value.replace(/\/+$/, '');
+    const params = new URLSearchParams();
+    const mem = q('memory').value.trim();
+    const cpu = q('cpus').value.trim();
+    const stg = q('storage').value;
+    const wkl = q('workload').value;
+    const mxc = q('maxconn').value.trim();
+
+    if (mem) params.set('memory_gb', mem);
+    if (cpu) params.set('cpus', cpu);
+    if (stg) params.set('storage_type', stg);
+    if (wkl) params.set('workload', wkl);
+    if (mxc) params.set('max_conn', mxc);
+
+    const url = `${base}/v1/tune?${params.toString()}`;
+    q('urlOut').textContent = url;
+    q('curlOut').textContent = `curl -sS "${url}"`;
+  }
+  q('buildBtn').addEventListener('click', build);
+  build();
+
+  // Copy buttons
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sel = btn.getAttribute('data-copy');
+      const el = document.querySelector(sel);
+      const text = el ? el.textContent : '';
+      navigator.clipboard.writeText(text).then(() => {
+        const label = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => (btn.textContent = label), 1000);
+      });
+    });
+  });
+</script>

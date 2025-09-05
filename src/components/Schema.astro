@@ -1,0 +1,48 @@
+---
+import { Code } from 'astro:components';
+---
+<!-- Schema -->
+<section id="schema" class="mx-auto max-w-6xl px-4 sm:px-6 py-14">
+  <h2 class="text-2xl font-bold">Response schema</h2>
+  <p class="mt-2 text-gray-600 text-sm">All values are returned as strings or numbers suitable for <span class="font-mono">postgresql.conf</span>. You can template or write them directly.</p>
+  <div class="mt-4 grid lg:grid-cols-2 gap-6">
+    <div class="rounded-xl border border-gray-200 bg-white p-4">
+      <div class="text-xs text-gray-500 mb-2">JSON</div>
+      <Code class="overflow-x-auto text-sm" code={`{
+  "shared_buffers": "string",
+  "effective_cache_size": "string",
+  "work_mem": "string",
+  "maintenance_work_mem": "string",
+  "wal_buffers": "string | \"auto\"",
+  "checkpoint_completion_target": "number",
+  "default_statistics_target": "number",
+  "random_page_cost": "number",
+  "effective_io_concurrency": "number",
+  "max_connections": "number",
+  "max_worker_processes": "number",
+  "max_parallel_workers": "number",
+  "max_parallel_workers_per_gather": "number",
+  "notes": ["string", "..."]
+}`} lang="json" />
+    </div>
+    <div class="rounded-xl border border-gray-200 bg-white p-4">
+      <div class="text-xs text-gray-500 mb-2">Example</div>
+      <Code class="overflow-x-auto text-sm" code={`{
+  "shared_buffers": "8GB",
+  "effective_cache_size": "24GB",
+  "work_mem": "64MB",
+  "maintenance_work_mem": "2GB",
+  "wal_buffers": "auto",
+  "checkpoint_completion_target": 0.9,
+  "default_statistics_target": 100,
+  "random_page_cost": 1.1,
+  "effective_io_concurrency": 200,
+  "max_connections": 200,
+  "max_worker_processes": 8,
+  "max_parallel_workers": 8,
+  "max_parallel_workers_per_gather": 4,
+  "notes": ["generated: v1", "profile: oltp"]
+}`} lang="json" />
+    </div>
+  </div>
+</section>
