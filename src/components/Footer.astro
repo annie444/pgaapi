@@ -1,11 +1,23 @@
 <!-- Footer -->
 <footer class="border-t border-gray-200 bg-white">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-6 text-sm text-gray-600 flex flex-wrap items-center justify-between gap-4">
+  <div
+    class="mx-auto max-w-6xl px-4 sm:px-6 py-6 text-sm text-gray-600 flex flex-wrap items-center justify-between gap-4"
+  >
     <div>© <span id="year"></span> PG Tuning API</div>
     <div class="flex items-center gap-3">
       <span>v1</span>
       <span>·</span>
-      <a class="hover:underline" href="mailto:ops@example.com">ops@example.com</a>
+      <a
+        class="hover:underline"
+        href="mailto:ops@example.com"
+        >ops@example.com</a
+      >
     </div>
   </div>
 </footer>
+
+<script>
+  // Year
+  const yearSpan = document.getElementById('year');
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear().toString();
+</script>

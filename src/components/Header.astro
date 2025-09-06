@@ -1,17 +1,37 @@
+---
+import { Image } from "astro:assets";
+import elephantPng from "../assets/elephant-2000x2000.png";
+---
+
 <header class="border-b border-gray-200 bg-white">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-4 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-brand" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M3 6a1 1 0 0 1 1-1h8a5 5 0 0 1 5 5v1h1a3 3 0 1 1 0 6h-1.28A2 2 0 0 1 15 18H7a4 4 0 0 1-4-4V6z"/>
-      </svg>
-      <span class="text-lg font-semibold">PG Tuning API</span>
-    </div>
+  <div
+    class="mx-auto max-w-6xl px-4 sm:px-6 py-4 flex items-center justify-between"
+  >
+    <a href="/">
+      <div class="flex items-center gap-2">
+        <Image
+          src={elephantPng}
+          alt="Outline of an elephant"
+          width={48}
+          height={48}
+        />
+        <span class="text-2xl font-semibold">PG Tuning API</span>
+      </div>
+    </a>
     <nav class="text-sm">
-      <a href="#quickstart" class="px-3 py-2 rounded hover:bg-gray-100">Quickstart</a>
-      <a href="#endpoint" class="px-3 py-2 rounded hover:bg-gray-100">Endpoint</a>
+      <a href="#quickstart" class="px-3 py-2 rounded hover:bg-gray-100"
+        >Quickstart</a
+      >
+      <a href="#endpoint" class="px-3 py-2 rounded hover:bg-gray-100"
+        >Endpoint</a
+      >
       <a href="#schema" class="px-3 py-2 rounded hover:bg-gray-100">Schema</a>
-      <a href="#examples" class="px-3 py-2 rounded hover:bg-gray-100">Examples</a>
-      <a href="#status" class="px-3 py-2 rounded hover:bg-gray-100">Status & Errors</a>
+      <a href="#examples" class="px-3 py-2 rounded hover:bg-gray-100"
+        >Examples</a
+      >
+      <a href="#status" class="px-3 py-2 rounded hover:bg-gray-100"
+        >Status & Errors</a
+      >
     </nav>
   </div>
 </header>

@@ -1,0 +1,309 @@
+---
+import { Code } from "astro-expressive-code/components";
+---
+
+<section id="quickstart" class="mx-auto max-w-6xl px-4 sm:px-6 py-14">
+  <h2 class="text-2xl font-bold">Quickstart</h2>
+  <p class="mt-2 text-gray-600">
+    Fill in your server profile and copy the URL or curl command. The page won’t
+    make network calls—no CORS headaches.
+  </p>
+
+  <div class="mt-6 grid lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-1 rounded-xl border border-gray-200 bg-white p-4">
+      <label class="block text-sm font-medium text-gray-700">API Base URL</label
+      >
+      <input
+        id="baseUrl"
+        type="text"
+        class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+        value={Astro.url.origin}
+        disabled
+      />
+
+      <div class="mt-4 grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">version</label>
+          <input
+            id="version"
+            type="number"
+            min="4"
+            max="18"
+            class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+            placeholder="e.g., 17"
+            value="17"
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">os</label>
+          <select
+            name="os"
+            id="os"
+            class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+          >
+            <option value="linux" selected>linux</option>
+            <option value="macos">macos</option>
+            <option value="windows">windows</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-medium text-gray-700"
+            >memory_gb</label
+          >
+          <input
+            id="memory_gb"
+            type="number"
+            min="1"
+            class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+            placeholder="e.g., 32"
+            value="32"
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">cpus</label>
+          <input
+            id="cpus"
+            type="number"
+            min="1"
+            class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+            placeholder="e.g., 8"
+            value="8"
+          />
+        </div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-medium text-gray-700"
+            >num_disks</label
+          >
+          <input
+            id="num_disks"
+            type="number"
+            min="1"
+            class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+            placeholder="e.g., 1"
+            value="1"
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700"
+            >num_replicas</label
+          >
+          <input
+            id="num_replicas"
+            type="number"
+            min="0"
+            class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+            placeholder="e.g., 2"
+            value="0"
+          />
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <label class="block text-sm font-medium text-gray-700">db_size_gb</label
+        >
+        <input
+          id="db_size_gb"
+          type="number"
+          min="1"
+          class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+          placeholder="e.g., 2"
+          value="1"
+        />
+      </div>
+
+      <div class="mt-3">
+        <label class="block text-sm font-medium text-gray-700"
+          >storage_type</label
+        >
+        <select
+          id="storage_type"
+          class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+        >
+          <option value="ssd" selected>ssd</option>
+          <option value="hdd">hdd</option>
+          <option value="network">network</option>
+        </select>
+      </div>
+
+      <div class="mt-3">
+        <label class="block text-sm font-medium text-gray-700"
+          >backup_method</label
+        >
+        <select
+          id="backup_method"
+          class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+        >
+          <option value="pg_dump" selected>pg_dump</option>
+          <option value="pg_basebackup">pg_basebackup</option>
+          <option value="pglogical">pglogical</option>
+        </select>
+      </div>
+
+      <div class="mt-3">
+        <label class="block text-sm font-medium text-gray-700">workload</label>
+        <select
+          id="workload"
+          class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+        >
+          <option value="webapp" selected>webapp</option>
+          <option value="oltp">oltp</option>
+          <option value="warehouse">warehouse</option>
+          <option value="desktop">desktop</option>
+          <option value="mixed">mixed</option>
+        </select>
+      </div>
+
+      <div class="mt-3">
+        <label class="block text-sm font-medium text-gray-700"
+          >max_conn (optional)</label
+        >
+        <input
+          id="max_conn"
+          type="number"
+          min="1"
+          class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
+          placeholder="e.g., 200"
+        />
+      </div>
+
+      <button
+        id="buildBtn"
+        class="mt-5 w-full rounded-lg bg-brand px-4 py-2 text-white hover:bg-brand-dark"
+        >Build Request</button
+      >
+    </div>
+
+    <div class="lg:col-span-2 space-y-6">
+      <div id="urlOut" class="p-4">
+        <Code
+          class="overflow-x-auto"
+          title="GET URL"
+          code="https://api.example.com/v1/tune?memory_gb=32&cpus=8&storage_type=ssd&workload=oltp"
+          lang="shellsession"
+        />
+      </div>
+      <div id="curlOut" class="p-4">
+        <Code
+          class="overflow-x-auto"
+          title="curl"
+          code='curl -sS "https://api.example.com/v1/tune?memory_gb=32&cpus=8&storage_type=ssd&workload=oltp'
+          lang="shellsession"
+        />
+      </div>
+      <div id="wgetOut" class="p-4">
+        <Code
+          class="overflow-x-auto"
+          title="wget"
+          code='wget -qO- "https://api.example.com/v1/tune?memory_gb=32&cpus=8&storage_type=ssd&workload=oltp'
+          lang="shellsession"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import {
+    ExpressiveCodeEngine,
+    ExpressiveCodeBlock,
+    ExpressiveCodeTheme,
+  } from "expressive-code";
+  import { toHtml } from "astro-expressive-code/hast";
+  import { pluginFrames } from "@expressive-code/plugin-frames";
+  import githubLight from "@shikijs/themes/github-light";
+
+  const frames = pluginFrames();
+  const theme = new ExpressiveCodeTheme(githubLight);
+  theme.bg = "#ffffff";
+  const engine = new ExpressiveCodeEngine({
+    themes: [theme],
+    plugins: [frames],
+  });
+
+  // Build URL & curl
+  const q = (id: string): HTMLInputElement => {
+    const element = document.getElementById(id);
+    if (element) {
+      return element as HTMLInputElement;
+    } else {
+      throw new Error(`Element with ID "${id}" not found`);
+    }
+  };
+
+  function build() {
+    const base = q("baseUrl").value.replace(/\/+$/, "");
+    const params = new URLSearchParams();
+    const mem = q("memory_gb").value.trim();
+    const cpu = q("cpus").value.trim();
+    const stg = q("storage_type").value;
+    const wkl = q("workload").value;
+    const mxc = q("max_conn").value.trim();
+    const disk = q("num_disks").value.trim();
+    const repl = q("num_replicas").value.trim();
+    const dbsz = q("db_size_gb").value.trim();
+    const ver = q("version").value.trim();
+    const os = q("os").value.trim();
+    const bkm = q("backup_method").value.trim();
+
+    if (mem) params.set("memory_gb", mem);
+    if (cpu) params.set("cpus", cpu);
+    if (stg) params.set("storage_type", stg);
+    if (wkl) params.set("workload", wkl);
+    if (mxc) params.set("max_conn", mxc);
+    if (disk) params.set("num_disks", disk);
+    if (repl) params.set("num_replicas", repl);
+    if (dbsz) params.set("db_size_gb", dbsz);
+    if (ver) params.set("version", ver);
+    if (os) params.set("os", os);
+    if (bkm) params.set("backup_method", bkm);
+
+    const url = `${base}/api/v1/tune?${params.toString()}`;
+    engine
+      .render(
+        new ExpressiveCodeBlock({
+          code: url,
+          language: "shellsession",
+          locale: "en-US",
+          meta: "GET URL",
+          props: { title: "GET URL" },
+        }),
+      )
+      .then(({ renderedGroupAst }) => {
+        q("urlOut").innerHTML = toHtml(renderedGroupAst);
+      });
+    engine
+      .render(
+        new ExpressiveCodeBlock({
+          code: `curl -sS "${url}"`,
+          language: "shellsession",
+          locale: "en-US",
+          meta: "curl",
+          props: { title: "curl" },
+        }),
+      )
+      .then(({ renderedGroupAst }) => {
+        q("curlOut").innerHTML = toHtml(renderedGroupAst);
+      });
+    engine
+      .render(
+        new ExpressiveCodeBlock({
+          code: `wget -qO- "${url}"`,
+          language: "shellsession",
+          locale: "en-US",
+          meta: "wget",
+          props: { title: "wget" },
+        }),
+      )
+      .then(({ renderedGroupAst }) => {
+        q("wgetOut").innerHTML = toHtml(renderedGroupAst);
+      });
+  }
+  q("buildBtn").addEventListener("click", build);
+  build();
+</script>
