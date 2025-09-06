@@ -3,6 +3,5 @@ onlyBuiltDependencies:
   - esbuild
   - sharp
   - workerd
-neverBuiltDependencies: []
 packages:
   - .
