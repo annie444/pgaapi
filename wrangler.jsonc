@@ -1,29 +1,28 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "pgapi",
-  "workers_dev": true,
+  "main": "./dist/_worker.js/index.js",
   "compatibility_date": "2025-09-06",
-  "observability": {
-    "enabled": true,
-    "head_sampling_rate": 0.5,
-  },
-  "build": {
-    "command": "pnpm run build",
-    "cwd": ".",
-    "watch_dir": ".",
-  },
-  "limits": {
-    "cpu_ms": 100,
-  },
-  "routes": [
-    {
-      "pattern": "pgconfig.com",
-      "custom_domain": true,
-    },
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
   ],
   "assets": {
+    "binding": "ASSETS",
     "directory": "./dist",
-    "run_worker_first": ["/api/*"],
+    "not_found_handling": "single-page-application",
+    "run_worker_first": true,
   },
-  "compatibility_flags": ["nodejs_compat"],
+  "images": {
+    "binding": "IMAGES", // i.e. available in your Worker on env.IMAGES
+  },
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+    },
+  },
+  "placement": {
+    "mode": "smart",
+  },
 }

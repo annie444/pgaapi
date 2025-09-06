@@ -7,6 +7,7 @@ import cloudflare from "@astrojs/cloudflare";
 // https://astro.build/config
 export default defineConfig({
   vite: { plugins: [tailwindcss()] },
+  trailingSlash: "ignore",
   output: "server",
   site: "https://pgconfig.com",
   integrations: [
@@ -17,6 +18,9 @@ export default defineConfig({
     }),
   ],
   adapter: cloudflare({
-    imageService: "cloudflare",
+    imageService: "compile",
+    platformProxy: {
+      enabled: true,
+    },
   }),
 });
