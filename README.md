@@ -6,7 +6,7 @@
 
 The service returns exactly the same output for the same input, has no external dependencies and exposes only a single GET endpoint. It can be used directly with tools like curl, wget, Ansible, cloud‑init or Terraform.
 
-⸻
+---
 
 ## Features:
 
@@ -113,8 +113,9 @@ All values should be URL encoded. Omitted optional parameters fall back to sensi
 ## Responses and errors
 
 The service returns JSON with two top‑level keys:
-• config: an object whose keys correspond to postgresql.conf settings and whose values are strings or numbers formatted for direct inclusion ￼.
-• warnings: an array of strings containing non‑fatal warnings, or omitted if there are none ￼.
+
+- config: an object whose keys correspond to postgresql.conf settings and whose values are strings or numbers formatted for direct inclusion ￼.
+- warnings: an array of strings containing non‑fatal warnings, or omitted if there are none ￼.
 
 ## HTTP status codes:
 
@@ -165,7 +166,7 @@ curl -sS "https://pgconfig.com/api/v1/tune?\
       {% endfor %}
 ```
 
-⸻
+---
 
 ### Developing & contributing
 
@@ -182,7 +183,7 @@ pnpm i
 pnpm dev
 ```
 
-⸻
+---
 
 ### License
 
