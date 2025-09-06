@@ -7,6 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "wrangler": "wrangler",
     "check": "astro check && prettier --check .",
     "fmt": "prettier --write ."
   },
@@ -31,6 +32,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.14",
     "shiki": "^3.12.2",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.3.1",
+    "wrangler": "^4.34.0"
   }
 }
