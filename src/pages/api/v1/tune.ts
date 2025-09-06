@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { getPostgresConfig } from "../../../lib/config";
 import { PGApiSchema } from "../../../lib/schema";
 
-export const prerender = false;
+export const prerender = true;
 
 export const GET: APIRoute = ({ params, request }) => {
   const url = new URL(request.url);

@@ -17,7 +17,7 @@ import { Code } from "astro-expressive-code/components";
         id="baseUrl"
         type="text"
         class="mt-1 w-full rounded border-gray-300 focus:border-brand focus:ring-brand"
-        value={Astro.url.origin}
+        value={Astro.site?.toString()}
         disabled
       />
 

@@ -10,13 +10,13 @@ import { Code } from "astro-expressive-code/components";
     <Code
       title="OLTP on SSD (32 GB, 8 vCPU)"
       class="overflow-x-auto p-4"
-      code={`curl -sS "${Astro.url.origin}/api/v1/tune?memory_gb=32&cpus=8&storage_type=ssd&workload=oltp&num_disks=1&num_replicas=0&db_size_gb=1&version=17&os=linux&backup_method=pg_dump"`}
+      code={`curl -sS "${Astro.site?.toString()}/api/v1/tune?memory_gb=32&cpus=8&storage_type=ssd&workload=oltp&num_disks=1&num_replicas=0&db_size_gb=1&version=17&os=linux&backup_method=pg_dump"`}
       lang="shellsession"
     />
     <Code
       title="OLTP on Network Storage (128 GB, 24 vCPU)"
       class="overflow-x-auto p-4"
-      code={`curl -sS "${Astro.url.origin}/api/v1/tune?memory_gb=32&cpus=8&storage_type=ssd&workload=oltp&num_disks=1&num_replicas=0&db_size_gb=1&version=17&os=linux&backup_method=pg_dump"`}
+      code={`curl -sS "${Astro.site?.toString()}/api/v1/tune?memory_gb=32&cpus=8&storage_type=ssd&workload=oltp&num_disks=1&num_replicas=0&db_size_gb=1&version=17&os=linux&backup_method=pg_dump"`}
       lang="shellsession"
     />
   </div>
